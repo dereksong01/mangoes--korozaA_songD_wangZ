@@ -8,7 +8,8 @@ We are using the Unification Project dataset. This set includes K-12 financial, 
 
 This group aims to use this dataset to explore the state of education in the U.S. We would like to compare the amount invested in education and associated resources in every state and see how/if that affects academic achievement. There are great disparities in the realm of education in our country and we wish to delve deeper in the factors at play.
 
-We sourced this dataset from [here] (https://www.kaggle.com/noriuk/us-education-datasets-unification-project).
+
+We sourced this dataset from [here](https://www.kaggle.com/noriuk/us-education-datasets-unification-project)
 
 ## Display
 The user will be shown a map of the United States tuned to the data from our dataset.
