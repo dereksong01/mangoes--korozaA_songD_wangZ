@@ -59,4 +59,6 @@ AVG_MATH_8_SCORE: The state's average score for eight graders taking the NAEP ma
 AVG_READING_4_SCORE: The state's average score for fourth graders taking the NAEP reading exam;
 AVG_READING_8_SCORE: The state's average score for eighth graders taking the NAEP reading exam;
 
+## Sketch
 
+![image](/sketch.jpeg)
