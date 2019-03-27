@@ -1,0 +1,73 @@
+Gudetama
+Susan Lin
+Cheryl Qian
+Derek Song
+Simon Tsui
+pd8
+---------------------
+Da Art of Storytellin'
+
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+\:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+ \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+  \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+   \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+susanL -- 2018-10-15 13:34
+--------------------------------------------------------------
+:: created devlog
+
+==============================================================
+simonT -- 2018-10-17 00:14
+--------------------------------------------------------------
+After receiving feedback from today's class, we made some edits
+1. We revised the arrows on the site map to link back to the home page for user functionality
+2. In the user table, permissions column was changed to admin (either Y or N)
+
+We read the 'programming sucks' article and decided on the following:
+1. Helpful comments so code can be more easily read
+2. Variable names that give insight into their purpose (not 'x')
+3. Report any problems run into to the rest of the team
+==============================================================
+susanL -- 2018-10-17 14:02
+--------------------------------------------------------------
+:: as a team, we created a landing and db.py which creates the databases we have outline in our proposal
+==============================================================
+cherylQ -- 2018-10-18 13:30
+--------------------------------------------------------------
+:: We added set and get methods to db.py, worked on substitute components for testing, and implementing login/logout function in home page
+==============================================================
+susanL -- 2018-10-20 18:02
+--------------------------------------------------------------
+:: wrote major functions in db.py
+:: wrote the authorization and linkage between pages
+==============================================================
+susanL -- 2018-10-23 19:07
+--------------------------------------------------------------
+:: debugged db.py and app.py
+:: login now functional
+:: reformatted form.html to render register.html useless
+:: deleted unnecessary templates i.e. landing.html, reusable.html, register.html
+==============================================================
+SimonT -- 2018-10-24 2:01
+--------------------------------------------------------------
+:: broke down project progress into version folders
+:: debugged db.py
+:: instantiated createBlog.html
+:: Updated README.md to include launch instructions
+==============================================================
+susanL -- 2018-10-25 13:39
+--------------------------------------------------------------
+:: had team meeting about roles + current progress + updated team on db.py functionality
+:: working on createBlog functionality + formatting
+==============================================================
+susanL -- 2018-10-26 18:53
+--------------------------------------------------------------
+:: finished display blog functionality for home page
+:: wrote crude user search functionality
+:: determined next steps are first to debug (make sure entries are visible after logout and log back in) and edit entry functionality
+:: added getEntryDate() in db.py and noticed bug in which multiple admins are created
+==============================================================
