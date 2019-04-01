@@ -34,7 +34,7 @@ def index():
     print("didnt go through")
     return render_template("map.html")
 
-'''imports collection to input droplet address'''
+'''imports collection to input droplet address
 @app.route("/enter",methods=['POST','GET'] )
 def enter():
     if request.form["submit"] == "submit":
@@ -58,7 +58,7 @@ def enter():
     print("stuff went down")
     return render_template("ipset.html")
 
-'''Using input years and titles to return values from collection'''
+Using input years and titles to return values from collection
 @app.route("/search",methods=['POST','GET'])
 def search():
     if request.form["submit1"] == "submit1":
@@ -67,7 +67,7 @@ def search():
         result= mongo.find_year(int(year),col)
         return render_template("detail.html", func=str(func), result=str(result))
     return render_template("movies.html", IP= ip)
-
+'''
 
 if __name__ == "__main__":
     app.debug = True
