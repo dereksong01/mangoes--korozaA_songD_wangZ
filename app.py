@@ -1,7 +1,7 @@
 # Team Mangoes -- Aleksandra Koroza, Derek Song, and Zane Wang
 # SoftDev2 pd8
-# K#08 -- Ay Mon, Go Git It From Yer Flask
-# 2019-03-06
+# P#04 -- Viz. Not to be confused with vis or vis-a-vis
+# 2019-04-01
 
 from pymongo import MongoClient
 from flask import Flask, redirect, url_for, render_template, session, request, flash, get_flashed_messages
@@ -32,7 +32,7 @@ with open('movies.json') as f:
 @app.route('/', methods=['POST','GET'])
 def index():
     print("didnt go through")
-    return render_template("ipset.html")
+    return render_template("map.html")
 
 '''imports collection to input droplet address'''
 @app.route("/enter",methods=['POST','GET'] )
