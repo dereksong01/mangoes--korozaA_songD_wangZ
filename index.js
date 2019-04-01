@@ -3,6 +3,12 @@ Aleksandra K., Derek S.
 SoftDev2 pd 8
 K #15: Scattered... or: Smothered, Covered, Chunked, Diced, Peppered, Capped, Topped & Country
 2019-03-21
+
+Simple Map
+http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922
+
+topojson
+https://bl.ocks.org/mbostock/4090848
 */
 
 chart = {
