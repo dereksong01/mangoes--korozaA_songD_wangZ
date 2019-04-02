@@ -43,11 +43,11 @@ var div = d3.select("body")
     		.style("opacity", 0);
 
 // Load in my states data!
-d3.csv("stateslived.csv", function(data) {
+d3.csv("static/stateslived.csv", function(data) {
 color.domain([0,1,2,3]); // setting the range of the input data
 
 // Load GeoJSON data and merge with states data
-d3.json("us-states.json", function(json) {
+d3.json("static/us-states.json", function(json) {
 
 // Loop through each state data value in the .csv file
 for (var i = 0; i < data.length; i++) {
@@ -97,7 +97,7 @@ svg.selectAll("path")
 
 
 // Map the cities I have lived in!
-d3.csv("cities-lived.csv", function(data) {
+d3.csv("static/cities-lived.csv", function(data) {
 
 svg.selectAll("circle")
 	.data(data)

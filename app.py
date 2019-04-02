@@ -25,6 +25,8 @@ with open('movies.json') as f:
     collection.insert_many(data)
  '''
 
+
+
 '''home route'''
 @app.route('/', methods=['POST','GET'])
 def index():
