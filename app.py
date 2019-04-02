@@ -3,7 +3,6 @@
 # P#04 -- Viz. Not to be confused with vis or vis-a-vis
 # 2019-04-01
 
-from pymongo import MongoClient
 from flask import Flask, redirect, url_for, render_template, session, request, flash, get_flashed_messages
 import json
 
@@ -11,8 +10,6 @@ from util import mongo
 
 app = Flask(__name__)
 
-ip = "178.128.156.17" #AK default
-col = 0
 '''
 now handled by a func
 #SERVER_ADDR='104.248.53.196' #zane
