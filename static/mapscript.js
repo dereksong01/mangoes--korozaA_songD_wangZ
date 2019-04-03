@@ -32,14 +32,14 @@ var projection = d3.geo.albersUsa()
 var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
     .projection(projection);  // tell path generator to use albersUsa projection
 
-/*
+
 // Define linear scale for output
 var color = d3.scale.linear()
-    .range(["rgb(213,222,217)","rgb(69,173,168)","rgb(84,36,55)","rgb(217,91,67)"]);*/
+    .range(["rgb(213,222,217)","rgb(69,173,168)","rgb(84,36,55)","rgb(217,91,67)"]);
 //console.log(d3.schemeBlues[5]);
 //defining color for cholorpleth effect
 //var color = d3.scaleQuantize([1, 10], d3.schemeBlues[5])
-var color = d3.scale.ordinal(d3.schemeBlues[9]);
+//var color = d3.scale.ordinal(d3.schemeBlues[9]);
 //console.log(d3.schemeBlues[5]);
 
 var legendText = ["Cities Lived", "States Lived", "States Visited", "Nada"];
@@ -60,13 +60,17 @@ var div = d3.select("body")
 d3.csv("static/states_all_extended.csv", function(data) {
 
     //color.domain([0,1,2,3]); // setting the range of the input data
-    var color = d3.scale.ordinal()
-      .domain(["foo", "bar", "baz"])
-      .range(colorbrewer.RdBu[9]);
 
     // Load GeoJSON data and merge with states data
     d3.json("static/us-states.json", function(json) {
+	var list = [];
+	for (var i = 0; i < data.length; i++) {
+	    list[i] = data[i].TOTAL_REVENUE;
+	}
 
+	console.log(Math.min(...list));
+	console.log(Math.max(...list));
+	console.log(list.length);
         // Loop through each state data value in the .csv file
         for (var i = 0; i < 51; i++) {
 
@@ -107,14 +111,41 @@ d3.csv("static/states_all_extended.csv", function(data) {
 
   	// Get data value
  		var value = d.properties.TOTAL_REVENUE;
-
-		if (value) {
+		console.log(value);
+		if (value < 900000) {
+		    return "rgb(224,255,255)"
+		}
+		else if (value < 1800000) {
+		    return "rgb(173,216,230)"
+		}
+		else if (value < 3000000) {
+		    return "rgb(135,206,235)"
+		}
+		else if (value < 4500000) {
+		    return "rgb(0,191,255)"
+		}
+		else if (value < 6000000) {
+		    return "rgb(0,255,255)"
+		}
+		else if (value < 8000000) {
+		    return "rgb(30,144,255)"
+		}
+		else if (value < 15000000) {
+		    return "rgb(100,149,237)"
+		}
+		else if (value < 40000000) {
+		    return "rgb(127,255,212)"
+		}
+		else if (value < 60000000) {
+		    return "rgb(70,130,180)"
+		}
+		else if (value < 89217262) {
+		    return "rgb(95,158,160)"
+		}
 		    //If value exists…
-        //console.log(color);
 		    //return color(1);
-        //color = d3.scaleQuantize([1, 10], d3.schemeBlues[9])
-        return color;
-		} else {
+        //return color;
+		else {
 		    //If value is undefined…
 		    return "rgb(213,222,217)";
 		}
