@@ -13,7 +13,10 @@ Linux: Ctrl+Shift+R
     http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
 
     Mike Bostock, Pie Chart Legend
-    http://bl.ocks.org/mbostock/3888852  */
+    http://bl.ocks.org/mbostock/3888852
+
+    https://bl.ocks.org/Fil/0bf58d23011ab244c657a1262bcbe4b2 color schemes
+    */
 
 
 //Width and height of map
@@ -29,10 +32,15 @@ var projection = d3.geo.albersUsa()
 var path = d3.geo.path()               // path generator that will convert GeoJSON to SVG paths
     .projection(projection);  // tell path generator to use albersUsa projection
 
-
+/*
 // Define linear scale for output
 var color = d3.scale.linear()
-    .range(["rgb(213,222,217)","rgb(69,173,168)","rgb(84,36,55)","rgb(217,91,67)"]);
+    .range(["rgb(213,222,217)","rgb(69,173,168)","rgb(84,36,55)","rgb(217,91,67)"]);*/
+//console.log(d3.schemeBlues[5]);
+//defining color for cholorpleth effect
+//var color = d3.scaleQuantize([1, 10], d3.schemeBlues[5])
+var color = d3.scale.ordinal(d3.schemeBlues[9]);
+//console.log(d3.schemeBlues[5]);
 
 var legendText = ["Cities Lived", "States Lived", "States Visited", "Nada"];
 
@@ -50,13 +58,17 @@ var div = d3.select("body")
 
 // Load in my states data!
 d3.csv("static/states_all_extended.csv", function(data) {
-    color.domain([0,1,2,3]); // setting the range of the input data
+
+    //color.domain([0,1,2,3]); // setting the range of the input data
+    var color = d3.scale.ordinal()
+      .domain(["foo", "bar", "baz"])
+      .range(colorbrewer.RdBu[9]);
 
     // Load GeoJSON data and merge with states data
     d3.json("static/us-states.json", function(json) {
 
         // Loop through each state data value in the .csv file
-        for (var i = 0; i < 50; i++) {
+        for (var i = 0; i < 51; i++) {
 
        	    // Grab State Name
             var dataState = data[i].STATE;
@@ -68,7 +80,7 @@ d3.csv("static/states_all_extended.csv", function(data) {
 	    for (var j = 0; j < json.features.length; j++)  {
 		  var jsonState = json.features[j].properties.name;
       var splt= jsonState.split(" ").join("_");
-      console.log(splt);
+      //console.log(splt);
 	        if (dataState.toLowerCase() == splt.toLowerCase()) {
 		    //console.log(jsonState);
 		    // Copy the data value into the JSON
@@ -89,25 +101,29 @@ d3.csv("static/states_all_extended.csv", function(data) {
 	    .style("stroke", "#fff")
 	    .style("stroke-width", "1")
 	    .style("fill", function(d) {
+        //color(data.get(d.properties.TOTAL_REVENUE));
+      //});
+      //.attr("fill", d => color(data.get(d.properties.TOTAL_REVENUE)))
 
-		// Get data value
+  	// Get data value
  		var value = d.properties.TOTAL_REVENUE;
 
 		if (value) {
 		    //If value exists…
-        console.log(value);
-		    return color(1);
+        //console.log(color);
+		    //return color(1);
+        //color = d3.scaleQuantize([1, 10], d3.schemeBlues[9])
+        return color;
 		} else {
 		    //If value is undefined…
 		    return "rgb(213,222,217)";
 		}
-	    });
-
-
+  });
+/*
         // Map the cities I have lived in!
-        d3.csv("static/cities-lived.csv", function(data) {
+      d3.csv("static/cities-lived.csv", function(data) {
 
-	    svg.selectAll("circle")
+	   svg.selectAll("circle")
 		.data(data)
 		.enter()
 		.append("circle")
@@ -141,7 +157,7 @@ d3.csv("static/states_all_extended.csv", function(data) {
 			.style("opacity", 0);
 		});
 	});
-
+*/
 	// Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
 	var legend = d3.select("body").append("svg")
       	    .attr("class", "legend")
