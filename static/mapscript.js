@@ -1,5 +1,11 @@
 /*  This visualization was made possible by modifying code provided by:
 
+Ultimately this is a frustrating browser cache issue, which can be solved by forcing the browser to do a "hard refresh",
+which is going to be a browser/OS dependent keystroke, but generally this works:
+Windows: Ctrl+F5
+Mac: Cmd+Shift+R
+Linux: Ctrl+Shift+R
+
     Scott Murray, Choropleth example from "Interactive Data Visualization for the Web"
     https://github.com/alignedleft/d3-book/blob/master/chapter_12/05_choropleth.html
 
@@ -45,27 +51,29 @@ var div = d3.select("body")
 // Load in my states data!
 d3.csv("static/states_all_extended.csv", function(data) {
     color.domain([0,1,2,3]); // setting the range of the input data
-    
+
     // Load GeoJSON data and merge with states data
     d3.json("static/us-states.json", function(json) {
-	
+
         // Loop through each state data value in the .csv file
         for (var i = 0; i < 50; i++) {
-	    
+
        	    // Grab State Name
             var dataState = data[i].STATE;
-	    
+
 	    // Grab data value
 	    var dataValue = data[i].TOTAL_REVENUE;
-	    
+
 	    // Find the corresponding state inside the GeoJSON
 	    for (var j = 0; j < json.features.length; j++)  {
-		var jsonState = json.features[j].properties.name;
-	        if (dataState == jsonState) {
-		    console.log(jsonState);
+		  var jsonState = json.features[j].properties.name;
+      var splt= jsonState.split(" ").join("_");
+      console.log(splt);
+	        if (dataState.toLowerCase() == splt.toLowerCase()) {
+		    //console.log(jsonState);
 		    // Copy the data value into the JSON
 		    json.features[j].properties.TOTAL_REVENUE = dataValue;
-		    
+
 		    // Stop looking through the JSON
 		    break;
 		}
@@ -87,13 +95,14 @@ d3.csv("static/states_all_extended.csv", function(data) {
 
 		if (value) {
 		    //If value exists…
+        console.log(value);
 		    return color(1);
 		} else {
 		    //If value is undefined…
 		    return "rgb(213,222,217)";
 		}
 	    });
-	
+
 
         // Map the cities I have lived in!
         d3.csv("static/cities-lived.csv", function(data) {
