@@ -42,7 +42,7 @@ var color = d3.scale.linear()
 //var color = d3.scale.ordinal(d3.schemeBlues[9]);
 //console.log(d3.schemeBlues[5]);
 
-var legendText = ["Cities Lived", "States Lived", "States Visited", "Nada"];
+//var legendText = ["Cities Lived", "States Lived", "States Visited", "Nada"];
 
 //Create SVG element and append map to the SVG
 var svg = d3.select("body")
@@ -56,6 +56,30 @@ var div = d3.select("body")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
+//legend creation
+var w = 140, h = 400;
+var key = d3.select("body").append("svg").attr("width", w).attr("height", h);
+var legend = key.append("defs").append("svg:linearGradient")
+  .attr("id", "gradient")
+  .attr("x1", "100%")
+  .attr("y1", "0%")
+  .attr("x2", "100%")
+  .attr("y2", "100%")
+  .attr("spreadMethod", "pad");
+legend.append("stop").attr("offset", "0%").attr("stop-color", "rgb(224,255,255)").attr("stop-opacity", 1);
+legend.append("stop").attr("offset", "100%").attr("stop-color", "rgb(95,158,160)").attr("stop-opacity", 1);
+
+key.append("rect").attr("width", w - 100).attr("height", h - 100).style("fill", "url(#gradient)").attr("transform", "translate(0,10)");
+var y = d3.scale.linear().range([300, 0]).domain([1, 5]);
+var yAxis = d3.svg.axis().scale(y).orient("right");
+
+legend.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .text("Total Revenue (Darker is more)");
+
 // Load in my states data!
 d3.csv("static/states_all_extended.csv", function(data) {
 
@@ -68,9 +92,9 @@ d3.csv("static/states_all_extended.csv", function(data) {
 	    list[i] = data[i].TOTAL_REVENUE;
 	}
 
-	console.log(Math.min(...list));
-	console.log(Math.max(...list));
-	console.log(list.length);
+	//console.log(Math.min(...list));
+	//console.log(Math.max(...list));
+	//console.log(list.length);
         // Loop through each state data value in the .csv file
         for (var i = 0; i < 51; i++) {
 
@@ -189,6 +213,8 @@ d3.csv("static/states_all_extended.csv", function(data) {
 		});
 	});
 */
+
+/*
 	// Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
 	var legend = d3.select("body").append("svg")
       	    .attr("class", "legend")
@@ -211,6 +237,7 @@ d3.csv("static/states_all_extended.csv", function(data) {
       	    .attr("y", 9)
       	    .attr("dy", ".35em")
       	    .text(function(d) { return d; });
-    });
+*/
 
+});
 });
