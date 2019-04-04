@@ -7,6 +7,7 @@ var svg = d3.select("svg"),
 // Map and projection
 //useful: https://d3indepth.com/geographic/
 // uses new version D3 5.0 https://github.com/d3/d3/blob/master/CHANGES.md#geographies-d3-geo
+// http://bl.ocks.org/palewire/d2906de347a160f38bc0b7ca57721328
 var path = d3.geoPath();
 var projection = d3.geoAlbersUsa()
     .translate([width/2, height/2])    // translate to center of screen
@@ -22,7 +23,7 @@ var data = d3.map();
 var colorScheme = d3.schemeReds[6];
 colorScheme.unshift("#eee")
 var colorScale = d3.scaleThreshold()
-    .domain([1, 6, 11, 26, 101, 1001])
+    .domain([900000, 7000000, 15000000, 40000000, 60000000, 90000000])
     .range(colorScheme);
 
 // Legend
@@ -34,7 +35,7 @@ g.append("text")
     .attr("x", 0)
     .attr("y", -6)
     .text("Total Revenue");
-var labels = ['0', '1-5', '6-10', '11-25', '15000000-40000000', '40000000-60000000', '60000000-89217262'];
+var labels = ['0-900000', '900000-7000000', '7000000-15000000', '15000000-40000000', '40000000-60000000', '60000000-90000000'];
 var legend = d3.legendColor()
     .labels(function (d) { return labels[d.i]; })
     .shapePadding(4)
@@ -47,7 +48,15 @@ d3.queue()
     //.defer(d3.json, "http://enjalot.github.io/wwsd/data/world/world-110m.geojson")
     .defer(d3.json, "us-states.json")
     //used to be name,total,percent,code
-    .defer(d3.csv, "states_all_extended.csv", function(d) { data.set(d.STATE, +d.TOTAL_REVENUE); })
+    .defer(d3.csv, "states_all_extended.csv", function(d) {
+      if(d.YEAR==2016){
+        data.set(d.STATE.toLowerCase(), +d.TOTAL_REVENUE);
+        //console.log(d.STATE.toLowerCase());
+        //console.log(data);
+      }
+      //console.log(d);
+      //console.log(data);
+    })
     .await(ready);
 
 function ready(error, topo) {
@@ -61,11 +70,11 @@ function ready(error, topo) {
         .data(topo.features)
         .enter().append("path")
             .attr("fill", function (d){
-                // Pull data for this country
-                console.log(data.STATE);
+              //console.log(data);
+                console.log(d.properties.name.toLowerCase());
                 //console.log(data.get(d.id));
-                d.TOTAL_REVENUE = data.get(d.id) || 0;
-                //console.log(d.TOTAL_REVENUE);
+                d.TOTAL_REVENUE = data.get(d.properties.name.toLowerCase()) || 0;
+                console.log(d.TOTAL_REVENUE);
                 // Set the color
                 return colorScale(d.TOTAL_REVENUE);
             })
