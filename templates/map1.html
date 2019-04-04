@@ -1,6 +1,24 @@
 {% extends "template.html" %}
 {% block title %} Enrollment {% endblock %}
+{% block content %}
+<style>
+  .countries {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  }
+  .legendThreshold {
+  font-size: 12px;
+  font-family: sans-serif;
+  }
+  .caption {
+  fill: #000;
+  text-anchor: start;
+  font-weight: bold;
+  }
+</style>
+{% endblock %}
 {% block javascript %}
-    <script src="{{ url_for('static',filename='mapscript1.js') }}"></script>
+    <script src="{{ url_for('static',filename='chloropleth1.js') }}"></script>
     <!-- The contents of myscript.js will be loaded inside the script tag -->
 {% endblock %}
