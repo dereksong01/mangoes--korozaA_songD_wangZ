@@ -34,7 +34,7 @@ g.append("text")
     .attr("x", 0)
     .attr("y", -6)
     .text("Total Revenue");
-var labels = ['0', '1-5', '6-10', '11-25', '26-100', '101-1000', '> 1000'];
+var labels = ['0', '1-5', '6-10', '11-25', '15000000-40000000', '40000000-60000000', '60000000-89217262'];
 var legend = d3.legendColor()
     .labels(function (d) { return labels[d.i]; })
     .shapePadding(4)
@@ -46,13 +46,15 @@ svg.select(".legendThreshold")
 d3.queue()
     //.defer(d3.json, "http://enjalot.github.io/wwsd/data/world/world-110m.geojson")
     .defer(d3.json, "us-states.json")
-    .defer(d3.csv, "mooc-countries.csv", function(d) { data.set(d.code, +d.total); })
+    //used to be name,total,percent,code
+    .defer(d3.csv, "states_all_extended.csv", function(d) { data.set(d.STATE, +d.TOTAL_REVENUE); })
     .await(ready);
 
 function ready(error, topo) {
     if (error) throw error;
 
     // Draw the map
+    //.data is just collection of states and their geometries
     svg.append("g")
         .attr("class", "countries")
         .selectAll("path")
@@ -60,9 +62,12 @@ function ready(error, topo) {
         .enter().append("path")
             .attr("fill", function (d){
                 // Pull data for this country
-                d.total = data.get(d.id) || 0;
+                console.log(data.STATE);
+                //console.log(data.get(d.id));
+                d.TOTAL_REVENUE = data.get(d.id) || 0;
+                //console.log(d.TOTAL_REVENUE);
                 // Set the color
-                return colorScale(d.total);
+                return colorScale(d.TOTAL_REVENUE);
             })
             .attr("d", path);
 }
