@@ -20,7 +20,7 @@ var path = d3.geoPath()               // path generator that will convert GeoJSO
 
 // Data and color scale
 var data = d3.map();
-var colorScheme = d3.schemeReds[6];
+var colorScheme = d3.schemeReds[5];
 colorScheme.unshift("#eee")
 var colorScale = d3.scaleThreshold()
     .domain([900000, 7000000, 15000000, 40000000, 60000000, 90000000])
@@ -73,7 +73,7 @@ function ready(error, topo) {
               //console.log(data);
                 console.log(d.properties.name.toLowerCase());
                 //console.log(data.get(d.id));
-                d.TOTAL_REVENUE = data.get(d.properties.name.toLowerCase()) || 0;
+                d.TOTAL_REVENUE = data.get(d.properties.name.split(" ").join("_").toLowerCase()) || 0;
                 console.log(d.TOTAL_REVENUE);
                 // Set the color
                 return colorScale(d.TOTAL_REVENUE);

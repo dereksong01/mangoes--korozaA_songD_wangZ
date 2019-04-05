@@ -20,7 +20,7 @@ var path = d3.geoPath()               // path generator that will convert GeoJSO
 
 // Data and color scale
 var data = d3.map();
-var colorScheme = d3.schemeReds[6];
+var colorScheme = d3.schemeReds[5];
 colorScheme.unshift("#eee")
 var colorScale = d3.scaleThreshold()
     .domain([900000, 7000000, 15000000, 40000000, 60000000, 90000000])
@@ -34,7 +34,7 @@ g.append("text")
     .attr("class", "caption")
     .attr("x", 0)
     .attr("y", -6)
-    .text("Total Revenue");
+    .text("Total Enrolled");
 var labels = ['0-900000', '900000-7000000', '7000000-15000000', '15000000-40000000', '40000000-60000000', '60000000-90000000'];
 var legend = d3.legendColor()
     .labels(function (d) { return labels[d.i]; })
@@ -50,7 +50,7 @@ d3.queue()
     //used to be name,total,percent,code
     .defer(d3.csv, "static/states_all_extended.csv", function(d) {
       if(d.YEAR==2016){
-        data.set(d.STATE.toLowerCase(), +d.TOTAL_REVENUE);
+        data.set(d.STATE.toLowerCase(), +d.ENROLL);
         //console.log(d.STATE.toLowerCase());
         //console.log(data);
       }
@@ -73,10 +73,10 @@ function ready(error, topo) {
               //console.log(data);
                 console.log(d.properties.name.toLowerCase());
                 //console.log(data.get(d.id));
-                d.TOTAL_REVENUE = data.get(d.properties.name.toLowerCase()) || 0;
-                console.log(d.TOTAL_REVENUE);
+                d.ENROLL = data.get(d.properties.name.split(" ").join("_").toLowerCase()) || 0;
+                console.log(d.ENROLL);
                 // Set the color
-                return colorScale(d.TOTAL_REVENUE);
+                return colorScale(d.ENROLL);
             })
             .attr("d", path);
 }

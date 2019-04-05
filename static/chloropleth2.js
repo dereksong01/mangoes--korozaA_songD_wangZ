@@ -20,10 +20,10 @@ var path = d3.geoPath()               // path generator that will convert GeoJSO
 
 // Data and color scale
 var data = d3.map();
-var colorScheme = d3.schemeReds[6];
+var colorScheme = d3.schemeReds[5];
 colorScheme.unshift("#eee")
 var colorScale = d3.scaleThreshold()
-    .domain([900000, 7000000, 15000000, 40000000, 60000000, 90000000])
+    .domain([0, 100, 200, 300, 400, 500])
     .range(colorScheme);
 
 // Legend
@@ -34,8 +34,8 @@ g.append("text")
     .attr("class", "caption")
     .attr("x", 0)
     .attr("y", -6)
-    .text("Total Revenue");
-var labels = ['0-900000', '900000-7000000', '7000000-15000000', '15000000-40000000', '40000000-60000000', '60000000-90000000'];
+    .text("Average Scores");
+var labels = ['0', '1-100', '101-200', '201-300', '301-400', '401-500'];
 var legend = d3.legendColor()
     .labels(function (d) { return labels[d.i]; })
     .shapePadding(4)
@@ -50,7 +50,7 @@ d3.queue()
     //used to be name,total,percent,code
     .defer(d3.csv, "static/states_all_extended.csv", function(d) {
       if(d.YEAR==2016){
-        data.set(d.STATE.toLowerCase(), +d.TOTAL_REVENUE);
+        data.set(d.STATE.toLowerCase(), +d.AVG_MATH_8_SCORE);
         //console.log(d.STATE.toLowerCase());
         //console.log(data);
       }
@@ -73,10 +73,10 @@ function ready(error, topo) {
               //console.log(data);
                 console.log(d.properties.name.toLowerCase());
                 //console.log(data.get(d.id));
-                d.TOTAL_REVENUE = data.get(d.properties.name.toLowerCase()) || 0;
-                console.log(d.TOTAL_REVENUE);
+                d.AVG_MATH_8_SCORE = data.get(d.properties.name.split(" ").join("_").toLowerCase()) || 0;
+                console.log(d.AVG_MATH_8_SCORE);
                 // Set the color
-                return colorScale(d.TOTAL_REVENUE);
+                return colorScale(d.AVG_MATH_8_SCORE);
             })
             .attr("d", path);
 }
