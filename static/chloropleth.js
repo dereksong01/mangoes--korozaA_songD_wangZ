@@ -68,15 +68,31 @@ function ready(error, topo) {
         .attr("class", "countries")
         .selectAll("path")
         .data(topo.features)
-        .enter().append("path")
-            .attr("fill", function (d){
-              //console.log(data);
-                console.log(d.properties.name.toLowerCase());
-                //console.log(data.get(d.id));
-                d.TOTAL_REVENUE = data.get(d.properties.name.split(" ").join("_").toLowerCase()) || 0;
-                console.log(d.TOTAL_REVENUE);
-                // Set the color
-                return colorScale(d.TOTAL_REVENUE);
-            })
-            .attr("d", path);
+        .enter()
+	.append("path")
+        .attr("fill", function (d){
+            //console.log(data);
+            console.log(d.properties.name.toLowerCase());
+            //console.log(data.get(d.id));
+            d.TOTAL_REVENUE = data.get(d.properties.name.split(" ").join("_").toLowerCase()) || 0;
+            console.log(d.TOTAL_REVENUE);
+            // Set the color
+            return colorScale(d.TOTAL_REVENUE);
+        })
+    	.on("mouseover", function(d) {
+	    console.log(d.properties.name);
+	    console.log(d.TOTAL_REVENUE);
+	    /*
+	    svg.append("g")
+		.attr("class", "countries")
+		.selectAll("path")
+		.data(topo.features)
+		.enter()
+		.append("path")
+		.text(d.properties.name)
+		.style("left", (d3.event.pageX) + "px")
+		.style("top", (d3.event.pageY - 28) + "px");
+	    */	    
+	})
+        .attr("d", path);
 }
