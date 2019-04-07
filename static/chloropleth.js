@@ -75,7 +75,7 @@ function ready(error, topo) {
             var x = 'xxx';//+d.properties.value;
             //x = x.toPrecision(2);
             return "State: " + d.properties.name + "<br>"
-                + "Revenue (past 3 years):" + "<br>"
+                //+ "Revenue (past 3 years):" + "<br>"
                 + "<div id='tipDiv'></div><br>"
         });
     svg.call(tip);
@@ -108,7 +108,7 @@ function ready(error, topo) {
             var tipSVG = d3.select("#tipDiv")
                 .append("svg")
                 .attr("width", 150)
-                .attr("height", barHeight * 2);
+                .attr("height", barHeight * toolTipYearCount);
 
             var dataset = new Array(toolTipYearCount);
             for (let i = 0; i < toolTipYearCount; i++) {
@@ -127,23 +127,10 @@ function ready(error, topo) {
                 .attr("x", 2)
                 .attr("y", barHeight / 2)
                 .attr("dy", ".35em")
-/*                .attr("fill", function (d) {
-
-                    if (d === d3.max(dataset)) {
-                        return "black";
-                    } else {
-                        return "green";
-                    }
-                })*/
-                .style("font-size", "12px")
+                .style("font-size", "10px")
                 .text(function (d) {
                     console.log(d);
                     return d[0] + " revenue: $" + d[1];
-                    /*if (d === d3.max(dataset)) {
-                        return "Mens Salary: $" + d;
-                    } else {
-                        return "Womens Salary: $" + d;
-                    }*/
                 });
         })
         .on("mouseout", tip.hide)
