@@ -8,9 +8,9 @@ var svg = d3.select("svg"),
 //useful: https://d3indepth.com/geographic/
 // uses new version D3 5.0 https://github.com/d3/d3/blob/master/CHANGES.md#geographies-d3-geo
 // http://bl.ocks.org/palewire/d2906de347a160f38bc0b7ca57721328
-var path = d3.geoPath();
+//var path = d3.geoPath();
 var projection = d3.geoAlbersUsa()
-    .translate([width/2, height/2])    // translate to center of screen
+    .translate([width / 2, height / 2])    // translate to center of screen
     .scale([1000]);
 
 // Define path generator
@@ -37,7 +37,9 @@ g.append("text")
     .text("Total Revenue");
 var labels = ['0-900000', '900000-7000000', '7000000-15000000', '15000000-40000000', '40000000-60000000', '60000000-90000000'];
 var legend = d3.legendColor()
-    .labels(function (d) { return labels[d.i]; })
+    .labels(function (d) {
+        return labels[d.i];
+    })
     .shapePadding(4)
     .scale(colorScale);
 svg.select(".legendThreshold")
@@ -45,22 +47,28 @@ svg.select(".legendThreshold")
 
 // Load external data and boot
 d3.queue()
-    //.defer(d3.json, "http://enjalot.github.io/wwsd/data/world/world-110m.geojson")
+//.defer(d3.json, "http://enjalot.github.io/wwsd/data/world/world-110m.geojson")
     .defer(d3.json, "static/us-states.json")
     //used to be name,total,percent,code
-    .defer(d3.csv, "static/states_all_extended.csv", function(d) {
-      if(d.YEAR==2016){
-        data.set(d.STATE.toLowerCase(), +d.TOTAL_REVENUE);
-        //console.log(d.STATE.toLowerCase());
+    .defer(d3.csv, "static/states_all_extended.csv", function (d) {
+        if (d.YEAR == 2016) {
+            data.set(d.STATE.toLowerCase(), +d.TOTAL_REVENUE);
+            //console.log(d.STATE.toLowerCase());
+            //console.log(data);
+        }
+        //console.log(d);
         //console.log(data);
-      }
-      //console.log(d);
-      //console.log(data);
     })
     .await(ready);
 
 function ready(error, topo) {
     if (error) throw error;
+
+    var tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([20, 120])
+        .html("<p>This is a SVG inside a tooltip:</p> <div id='tipDiv'></div>");
+    svg.call(tip);
 
     // Draw the map
     //.data is just collection of states and their geometries
@@ -69,21 +77,24 @@ function ready(error, topo) {
         .selectAll("path")
         .data(topo.features)
         .enter()
-	      .append("path")
-        .attr("fill", function (d){
+        .append("path")
+        .attr("fill", function (d) {
             //console.log(data);
-            console.log(d.properties.name.toLowerCase());
+            //console.log(d.properties.name.toLowerCase());
             //console.log(data.get(d.id));
             d.TOTAL_REVENUE = data.get(d.properties.name.split(" ").join("_").toLowerCase()) || 0;
-            console.log(d.TOTAL_REVENUE);
+            //console.log(d.TOTAL_REVENUE);
             // Set the color
             return colorScale(d.TOTAL_REVENUE);
         })
         //giving the map mouseover func
         // https://bl.ocks.org/maelafifi/ee7fecf90bb5060d5f9a7551271f4397 reference code!!! men vs women pay
-    	.on("mouseover", function(d) {
-	    console.log(d.properties.name);
-	    console.log(d.TOTAL_REVENUE);
-	})
+        .on("mouseover", function (d) {
+
+            tip.show(d);
+
+            //console.log(d.properties.name);
+            //console.log(d.TOTAL_REVENUE);
+        })
         .attr("d", path);
 }
