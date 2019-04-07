@@ -1,3 +1,5 @@
+// FINANCES CODE
+
 var currYear = 2016;
 var toolTipWidth = 150;
 var toolTipBarWidth = 150;
