@@ -1,3 +1,7 @@
+var currYear = 2016;
+var toolTipYearCount = 3;
+var barHeight = 15;
+
 // The svg
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
@@ -51,15 +55,15 @@ d3.queue()
     .defer(d3.json, "static/us-states.json")
     //used to be name,total,percent,code
     .defer(d3.csv, "static/states_all_extended.csv", function (d) {
-        if (d.YEAR == 2016) {
-            data.set(d.STATE.toLowerCase(), +d.TOTAL_REVENUE);
-            //console.log(d.STATE.toLowerCase());
-            //console.log(data);
-        }
+        data.set(d.STATE.toLowerCase()+d.YEAR, +d.TOTAL_REVENUE);
         //console.log(d);
         //console.log(data);
     })
     .await(ready);
+
+function toKey(state) {
+    return state.split(" ").join("_").toLowerCase();
+}
 
 function ready(error, topo) {
     if (error) throw error;
@@ -68,13 +72,11 @@ function ready(error, topo) {
         .attr("class", "d3-tip")
         .offset([20, 120])
         .html(function (d) {
-            var x = 'xxx'//+d.properties.value;
+            var x = 'xxx';//+d.properties.value;
             //x = x.toPrecision(2);
-            return "State: " + d.properties.name + "<br><br>"
-                + "Averages:" + "<br>"
+            return "State: " + d.properties.name + "<br>"
+                + "Revenue (past 3 years):" + "<br>"
                 + "<div id='tipDiv'></div><br>"
-                + "Women make " + x + " cents per dollar" + "<br>"
-                + "that a man makes in " + d.properties.name;
         });
     svg.call(tip);
 
@@ -90,7 +92,7 @@ function ready(error, topo) {
             //console.log(data);
             //console.log(d.properties.name.toLowerCase());
             //console.log(data.get(d.id));
-            d.TOTAL_REVENUE = data.get(d.properties.name.split(" ").join("_").toLowerCase()) || 0;
+            d.TOTAL_REVENUE = data.get(toKey(d.properties.name)+currYear) || 0;
             //console.log(d.TOTAL_REVENUE);
             // Set the color
             return colorScale(d.TOTAL_REVENUE);
@@ -98,11 +100,51 @@ function ready(error, topo) {
         //giving the map mouseover func
         // https://bl.ocks.org/maelafifi/ee7fecf90bb5060d5f9a7551271f4397 reference code!!! men vs women pay
         .on("mouseover", function (d) {
-
-            tip.show(d);
-
+            var state  = toKey(d.properties.name);
             //console.log(d.properties.name);
             //console.log(d.TOTAL_REVENUE);
+            tip.show(d);
+
+            var tipSVG = d3.select("#tipDiv")
+                .append("svg")
+                .attr("width", 150)
+                .attr("height", barHeight * 2);
+
+            var dataset = new Array(toolTipYearCount);
+            for (let i = 0; i < toolTipYearCount; i++) {
+                var revenue = data.get(state + (currYear - i));
+                dataset[i] = [(currYear - i), revenue]
+            }
+
+            var bar = tipSVG.selectAll("g")
+                .data(dataset)
+                .enter().append("g")
+                .attr("transform", function (d, i) {
+                    return "translate(0," + i * barHeight + ")";
+                });
+
+            bar.append("text")
+                .attr("x", 2)
+                .attr("y", barHeight / 2)
+                .attr("dy", ".35em")
+/*                .attr("fill", function (d) {
+
+                    if (d === d3.max(dataset)) {
+                        return "black";
+                    } else {
+                        return "green";
+                    }
+                })*/
+                .style("font-size", "12px")
+                .text(function (d) {
+                    console.log(d);
+                    return d[0] + " revenue: $" + d[1];
+                    /*if (d === d3.max(dataset)) {
+                        return "Mens Salary: $" + d;
+                    } else {
+                        return "Womens Salary: $" + d;
+                    }*/
+                });
         })
         .on("mouseout", tip.hide)
         .attr("d", path);
