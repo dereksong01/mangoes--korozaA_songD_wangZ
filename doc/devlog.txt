@@ -17,8 +17,63 @@ derekS -- 2019-03-26 22:09
 --------------------------------------------------------------
 created devlog
 --------------------------------------------------------------
-
+derekS, korozaA, wangZ -- 2019-03-27 20:30
+--------------------------------------------------------------
+- Discussed project details and found education dataset. Readme updated for first
+deliverable. Our project will track achievement, enrollment, and finances across
+the country to learn more about the state of education. Sketch added to show this.
+--------------------------------------------------------------
+korozaA, wangZ, derekS -- 2019-03-28 18:30
+--------------------------------------------------------------
+- Found various chloropleth d3 demos online for reference. We envision three chloropleth maps comparing pre-set
+data points across the states. Upon mouse-over a chart (tbd) will appear to track changes over time.
+- Began looking over other groups' repos for second deliverable.
+--------------------------------------------------------------
 wangZ -- 2019-03-29 01:24
 --------------------------------------------------------------
-Added to README.md new sketch of web plan
+- Added to README.md new sketch of web plan. Previous one reflected counties, which are not present
+in our dataset.
 --------------------------------------------------------------
+korozaA, wangZ, derekS -- 2019-03-29 16:15
+--------------------------------------------------------------
+- Created issues in other project repos (2nd deliverable)
+- Observed that several other groups are using maps for visualizations. We may need to narrow the scope
+of our project.
+--------------------------------------------------------------
+wangZ -- 2019-03-31 11:45
+--------------------------------------------------------------
+- Referenced d3 demos to better understand chloropleth example code. Linked good code
+snippets. In particular, explored geoJson mapping mechanism. Group found that original
+reference was hard to follow (https://observablehq.com/@d3/choropleth).
+--------------------------------------------------------------
+korozaA -- 2019-04-01 23:11
+--------------------------------------------------------------
+- Fleshed out flask skeleton and made sure we can serve just the example code. Basic templates
+added and appropriate folders created.
+- Following Zane's work, using a simpler map example to prep for Wednesday's demo (http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922).
+- Code now imports our data and is visible in the dev console. Now needs to be shown in the map through color changes.
+--------------------------------------------------------------
+korozaA, wangZ -- 2019-04-02 00:23
+--------------------------------------------------------------
+- Encountered problems with coloration of states using available d3 methods. Resorted to using inequalities to dictate how
+each number interval colors each state.
+- base.html completed to show three maps upon button clicks on landing page.
+- To fix: continue exploring d3 coloration and scaling so that it is not done manually.
+--------------------------------------------------------------
+korozaA, -- 2019-04-03 06:20
+--------------------------------------------------------------
+- Added a scale on the side of the map screen, may not be used but good visual for demo.
+--------------------------------------------------------------
+korozaA, -- 2019-04-03 22:47
+--------------------------------------------------------------
+- Hacking together of various code snippets and references made for messy code and made it difficult to implement scaling/coloration.
+- Referenced new example (http://bl.ocks.org/palewire/d2906de347a160f38bc0b7ca57721328) and tested each line to not run into the same problems as before.
+Adapted code to use map of USA instead of the world, changed intervals to make sense for our dataset.
+- We are now in better shape in terms of mapping!
+- To do: 1) change code to make maps for enrollment and for achievement and 2) upon mouseover a state, display a scatterplot of data over time.
+--------------------------------------------------------------
+wangZ -- 2019-04-05 16:21
+--------------------------------------------------------------
+- Worked on mouseover/graph feature. Issues still remain with displaying map but appropriate data is shown in console.
+- Changed property referenced for two other maps. Scale still needs to be updated for maps to make sense.
+- Fixed svg in base.html so there is not a large empty space on landing page.

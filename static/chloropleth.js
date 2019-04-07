@@ -69,7 +69,7 @@ function ready(error, topo) {
         .selectAll("path")
         .data(topo.features)
         .enter()
-	.append("path")
+	      .append("path")
         .attr("fill", function (d){
             //console.log(data);
             console.log(d.properties.name.toLowerCase());
@@ -79,20 +79,11 @@ function ready(error, topo) {
             // Set the color
             return colorScale(d.TOTAL_REVENUE);
         })
+        //giving the map mouseover func
+        // https://bl.ocks.org/maelafifi/ee7fecf90bb5060d5f9a7551271f4397 reference code!!! men vs women pay
     	.on("mouseover", function(d) {
 	    console.log(d.properties.name);
 	    console.log(d.TOTAL_REVENUE);
-	    /*
-	    svg.append("g")
-		.attr("class", "countries")
-		.selectAll("path")
-		.data(topo.features)
-		.enter()
-		.append("path")
-		.text(d.properties.name)
-		.style("left", (d3.event.pageX) + "px")
-		.style("top", (d3.event.pageY - 28) + "px");
-	    */	    
 	})
         .attr("d", path);
 }
