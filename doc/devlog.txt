@@ -77,3 +77,9 @@ wangZ -- 2019-04-05 16:21
 - Worked on mouseover/graph feature. Issues still remain with displaying map but appropriate data is shown in console.
 - Changed property referenced for two other maps. Scale still needs to be updated for maps to make sense.
 - Fixed svg in base.html so there is not a large empty space on landing page.
+--------------------------------------------------------------
+korozaA -- 2019-04-07 16:00
+--------------------------------------------------------------
+- Continued work on mouseover/graph feature. Bar graphs now appear showing past three years.
+- Migrating mechanism to two other graphs.
+- Left to do is some bootstrapping to have a prettier landing page.

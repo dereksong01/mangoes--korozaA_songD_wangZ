@@ -16,7 +16,7 @@ var svg = d3.select("svg"),
 // http://bl.ocks.org/palewire/d2906de347a160f38bc0b7ca57721328
 //var path = d3.geoPath();
 var projection = d3.geoAlbersUsa()
-    .translate([width / 2, height / 2])    // translate to center of screen
+    .translate([width / 1.7, height / 2])    // translate to center of screen
     .scale([1000]);
 
 // Define path generator
@@ -26,7 +26,7 @@ var path = d3.geoPath()               // path generator that will convert GeoJSO
 
 // Data and color scale
 var data = d3.map();
-var colorScheme = d3.schemeReds[5];
+var colorScheme = d3.schemeGreens[5];
 colorScheme.unshift("#eee")
 var colorScale = d3.scaleThreshold()
     .domain([900000, 7000000, 15000000, 40000000, 60000000, 90000000])
@@ -40,7 +40,7 @@ g.append("text")
     .attr("class", "caption")
     .attr("x", 0)
     .attr("y", -6)
-    .text("Total Revenue");
+    .text("Total Revenue ($ in thousands)");
 var labels = ['0-900000', '900000-7000000', '7000000-15000000', '15000000-40000000', '40000000-60000000', '60000000-90000000'];
 var legend = d3.legendColor()
     .labels(function (d) {
@@ -142,7 +142,7 @@ function ready(error, topo) {
             bar.append("rect")
                 .attr("width", 0)
                 //.attr("height", bar)
-                .attr("opacity", 0.4)
+                .attr("opacity", 0.5)
                 .transition()
                 .duration(1000)
                 //.attr("width", w)
@@ -153,7 +153,7 @@ function ready(error, topo) {
                 })
                 .attr("height", barHeight - 1)
                 .attr("fill", function (d) {
-                    return '#ffffb2';
+                    return '#008080';
                 });
         })
         .on("mouseout", tip.hide)
