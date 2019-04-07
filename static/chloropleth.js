@@ -1,4 +1,6 @@
 var currYear = 2016;
+var toolTipWidth = 150;
+var toolTipBarWidth = 150;
 var toolTipYearCount = 3;
 var barHeight = 15;
 
@@ -107,14 +109,19 @@ function ready(error, topo) {
 
             var tipSVG = d3.select("#tipDiv")
                 .append("svg")
-                .attr("width", 150)
+                .attr("width", toolTipWidth)
                 .attr("height", barHeight * toolTipYearCount);
 
             var dataset = new Array(toolTipYearCount);
             for (let i = 0; i < toolTipYearCount; i++) {
                 var revenue = data.get(state + (currYear - i));
-                dataset[i] = [(currYear - i), revenue]
+                dataset[i] = [(currYear - i), revenue, 0]
             }
+            // add max for the data set as last param
+            for (let i = 0; i < toolTipYearCount; i++) {
+                dataset[i][2] = d3.max(dataset[1])
+            }
+            console.log(dataset);
 
             var bar = tipSVG.selectAll("g")
                 .data(dataset)
@@ -129,8 +136,24 @@ function ready(error, topo) {
                 .attr("dy", ".35em")
                 .style("font-size", "10px")
                 .text(function (d) {
-                    console.log(d);
                     return d[0] + " revenue: $" + d[1];
+                });
+
+            bar.append("rect")
+                .attr("width", 0)
+                //.attr("height", bar)
+                .attr("opacity", 0.4)
+                .transition()
+                .duration(1000)
+                //.attr("width", w)
+                .attr("width", function (d) {
+                    var w = toolTipBarWidth * (d[1]/d[2]);
+                    //console.log("w: "+w);
+                    return w;
+                })
+                .attr("height", barHeight - 1)
+                .attr("fill", function (d) {
+                    return '#ffffb2';
                 });
         })
         .on("mouseout", tip.hide)
