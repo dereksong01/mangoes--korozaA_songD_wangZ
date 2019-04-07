@@ -1,5 +1,7 @@
 // ENROLLMENT CODE
 
+// max: 6307022
+// min: 43866
 var currYear = 2016;
 var toolTipWidth = 150;
 var toolTipBarWidth = 150;
@@ -28,10 +30,10 @@ var path = d3.geoPath()               // path generator that will convert GeoJSO
 
 // Data and color scale
 var data = d3.map();
-var colorScheme = d3.schemeGreens[5];
+var colorScheme = d3.schemeReds[5];
 colorScheme.unshift("#eee")
 var colorScale = d3.scaleThreshold()
-    .domain([900000, 7000000, 15000000, 40000000, 60000000, 90000000])
+    .domain([43000, 250000, 500000, 1000000, 4000000, 6500000])
     .range(colorScheme);
 
 // Legend
@@ -42,8 +44,8 @@ g.append("text")
     .attr("class", "caption")
     .attr("x", 0)
     .attr("y", -6)
-    .text("Total Revenue ($ in thousands)");
-var labels = ['0-900000', '900000-7000000', '7000000-15000000', '15000000-40000000', '40000000-60000000', '60000000-90000000'];
+    .text("Total Enrolled ");
+var labels = ['0-43000', '43000-250000', '250000-500000', '500000-1000000', '1000000-4000000', '4000000-6500000'];
 var legend = d3.legendColor()
     .labels(function (d) {
         return labels[d.i];
@@ -59,7 +61,7 @@ d3.queue()
     .defer(d3.json, "static/us-states.json")
     //used to be name,total,percent,code
     .defer(d3.csv, "static/states_all_extended.csv", function (d) {
-        data.set(d.STATE.toLowerCase()+d.YEAR, +d.TOTAL_REVENUE);
+        data.set(d.STATE.toLowerCase()+d.YEAR, +d.ENROLL);
         //console.log(d);
         //console.log(data);
     })
@@ -96,17 +98,17 @@ function ready(error, topo) {
             //console.log(data);
             //console.log(d.properties.name.toLowerCase());
             //console.log(data.get(d.id));
-            d.TOTAL_REVENUE = data.get(toKey(d.properties.name)+currYear) || 0;
-            //console.log(d.TOTAL_REVENUE);
+            d.ENROLL = data.get(toKey(d.properties.name)+currYear) || 0;
+            //console.log(d.ENROLL);
             // Set the color
-            return colorScale(d.TOTAL_REVENUE);
+            return colorScale(d.ENROLL);
         })
         //giving the map mouseover func
         // https://bl.ocks.org/maelafifi/ee7fecf90bb5060d5f9a7551271f4397 reference code!!! men vs women pay
         .on("mouseover", function (d) {
             var state  = toKey(d.properties.name);
             //console.log(d.properties.name);
-            //console.log(d.TOTAL_REVENUE);
+            //console.log(d.ENROLL);
             tip.show(d);
 
             var tipSVG = d3.select("#tipDiv")
@@ -138,7 +140,7 @@ function ready(error, topo) {
                 .attr("dy", ".35em")
                 .style("font-size", "10px")
                 .text(function (d) {
-                    return d[0] + " revenue: $" + d[1];
+                    return d[0] + " enrolled: " + d[1];
                 });
 
             bar.append("rect")
