@@ -67,7 +67,15 @@ function ready(error, topo) {
     var tip = d3.tip()
         .attr("class", "d3-tip")
         .offset([20, 120])
-        .html("<p>This is a SVG inside a tooltip:</p> <div id='tipDiv'></div>");
+        .html(function (d) {
+            var x = 'xxx'//+d.properties.value;
+            //x = x.toPrecision(2);
+            return "State: " + d.properties.name + "<br><br>"
+                + "Averages:" + "<br>"
+                + "<div id='tipDiv'></div><br>"
+                + "Women make " + x + " cents per dollar" + "<br>"
+                + "that a man makes in " + d.properties.name;
+        });
     svg.call(tip);
 
     // Draw the map
@@ -96,5 +104,6 @@ function ready(error, topo) {
             //console.log(d.properties.name);
             //console.log(d.TOTAL_REVENUE);
         })
+        .on("mouseout", tip.hide)
         .attr("d", path);
 }
