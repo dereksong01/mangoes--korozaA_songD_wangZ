@@ -1,5 +1,5 @@
 mangoes
-Alexandra Koroza
+Aleksandra Koroza
 Derek Song
 Zane Wang
 ---------------------
@@ -13,17 +13,17 @@ Zane Wang
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-derekS -- 2019-03-26 22:09
+songD -- 2019-03-26 22:09
 --------------------------------------------------------------
 created devlog
 --------------------------------------------------------------
-derekS, korozaA, wangZ -- 2019-03-27 20:30
+songD, korozaA, wangZ -- 2019-03-27 20:30
 --------------------------------------------------------------
 - Discussed project details and found education dataset. Readme updated for first
 deliverable. Our project will track achievement, enrollment, and finances across
 the country to learn more about the state of education. Sketch added to show this.
 --------------------------------------------------------------
-korozaA, wangZ, derekS -- 2019-03-28 18:30
+korozaA, wangZ, songD -- 2019-03-28 18:30
 --------------------------------------------------------------
 - Found various chloropleth d3 demos online for reference. We envision three chloropleth maps comparing pre-set
 data points across the states. Upon mouse-over a chart (tbd) will appear to track changes over time.
@@ -34,7 +34,7 @@ wangZ -- 2019-03-29 01:24
 - Added to README.md new sketch of web plan. Previous one reflected counties, which are not present
 in our dataset.
 --------------------------------------------------------------
-korozaA, wangZ, derekS -- 2019-03-29 16:15
+korozaA, wangZ, songD -- 2019-03-29 16:15
 --------------------------------------------------------------
 - Created issues in other project repos (2nd deliverable)
 - Observed that several other groups are using maps for visualizations. We may need to narrow the scope
