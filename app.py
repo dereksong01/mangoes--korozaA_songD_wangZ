@@ -26,11 +26,6 @@ def map1():
 def map2():
     return render_template("map2.html")
 
-'''about route '''
-@app.route('/about', methods=['POST','GET'])
-def about():
-    return render_template("about.html")
-
 if __name__ == "__main__":
     app.debug = True
     app.run()
