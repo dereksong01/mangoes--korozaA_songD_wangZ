@@ -3,7 +3,7 @@
 var currYear = 2017;
 var toolTipWidth = 150;
 var toolTipBarWidth = 150;
-var toolTipYearCount = 3;
+var toolTipYearCount = 5;
 var barHeight = 15;
 
 // The svg
@@ -116,8 +116,10 @@ function ready(error, topo) {
 
             var dataset = new Array(toolTipYearCount);
             for (let i = 0; i < toolTipYearCount; i++) {
+                console.log(i);
                 var revenue = data.get(state + (currYear - i));
                 dataset[i] = [(currYear - i), revenue, 0]
+
             }
             // add max for the data set as last param
             for (let i = 0; i < toolTipYearCount; i++) {
