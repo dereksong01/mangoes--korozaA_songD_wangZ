@@ -1,36 +1,41 @@
 {% extends "template.html" %}
-{% block title %} Welcome {% endblock %}
+{% block title %} Home {% endblock %}
 {% block svg %} {% endblock %}
 {% block content %}
 
 <div id="bootstrap" class="container">
-     <h2 class="text-center text-info"> Mangoes Map Project </h2>
-     <div class="row">
+  <br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
+     <h2 class="text-center text-info"> WELCOME </h2>
+
+     <!-- <div class="row"> -->
+     <center>
+
           <div class="col-md-1">
           </div>
           <div class="col-md-10">
-               <p>Welcome to Mangoes' SoftDev Project! Here are three cool maps you can use to learn more about education in the U.S.A! </p>
-               <p> Please, choose what you are interested in: </p>
-
-               <form action="/map" method="POST">
-                 <button type="submit" class="btn btn-success"> Finances </button>
-               </form>
-
-               <form action="/map1" method="POST">
-                 <button type="submit" class="btn btn-danger"> Enrollment </button>
-               </form>
-
-               <form action="/map2" method="POST">
-                 <button type="submit" class="btn btn-primary"> Grades </button>
-               </form>
-
-               <br>
-
-               <p> This project is built using choropleth and using data with each state's records on it.
-                 The information displayed on each map is total revenue of each state in 2016, the amount of students in each state in 2016, and the average NAEP math exam scores for the eighth grade from each state in 2017.
-                 We wanted to see how the financial state of the environment children lived in resulted in whether they went to school and how it would affect their performance on standardized exams.</p>
           </div>
+          <div class="col-md-10">
+            In our project, you will be able to compare national data that we have gathered.
+            <br>
+            You will be able to look at finances, school enrollment, and acheivement.
+            <br>
+            I know too much text gets boring so it ends here!
+            <br>
+            Enjoy folks!
+            <br>
+            <br>
+            <form action="/map" method="POST">
+              <button type="submit" class="btn btn-primary"> Let's Go! </button>
+            </form>
           </div>
-          </div>
+        </div>
+        </center>
+
+      </div>
 
 {% endblock %}
