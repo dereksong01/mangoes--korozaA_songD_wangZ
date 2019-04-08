@@ -1,5 +1,36 @@
 {% extends "template.html" %}
 {% block title %} Achievement {% endblock %}
+
+{% block headers %} 
+<h2 class="text-center" style="color:blue"> GRADES </h2>
+<center>
+  <table>
+    <tr>
+      <td>
+	<form action="/map" method="POST">
+	  <button type="submit" class="btn btn-success"> Finances </button>
+	</form>
+      </td>
+      <td>
+	<form action="/map1" method="POST">
+	  <button type="submit" class="btn btn-danger"> Enrollment </button>
+	</form>
+      </td>
+      <td>
+	<form action="/map2" method="POST">
+	  <button type="submit" class="btn btn-primary"> Grades </button>
+	</form>
+      </td>
+      <td>
+	<form action="/" method="POST">
+	  <button type="submit" class="btn btn-info"> Homescreen </button>
+	</form>
+      </td>
+    </tr>
+  </table>
+</center>
+{% endblock %}
+
 {% block content %}
 <style>
 .countries {
@@ -46,7 +77,7 @@
     left: 0;
 }
 </style>
-<p> This map shows the average scores on the NAEP math exam of eighth grade students in 2017. NAEP is the National Assessment of Educational Progress. Their math exam is given every two years, hence why there is no data for 2016. By hovering over a state, the user will be able to also see the 2015 exam results. </p>
+<p class="text-center" style="color:blue"> This map shows the average scores on the NAEP math exam of eighth grade students in 2017. NAEP is the National Assessment of Educational Progress. Their math exam is given every two years, hence why there is no data for 2014 and 2016. By hovering over a state, the user will be able to also see the 2013 and 2015 exam results. </p>
 {% endblock %}
 {% block javascript %}
     <script src="{{ url_for('static',filename='chloropleth2.js') }}"></script>

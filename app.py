@@ -19,12 +19,12 @@ def map():
 '''enrollment route '''
 @app.route('/map1', methods=['POST','GET'])
 def map1():
-    return render_template("map.html")
+    return render_template("map1.html")
 
 '''achievement route '''
 @app.route('/map2', methods=['POST','GET'])
 def map2():
-    return render_template("map.html")
+    return render_template("map2.html")
 
 '''about route '''
 @app.route('/about', methods=['POST','GET'])
