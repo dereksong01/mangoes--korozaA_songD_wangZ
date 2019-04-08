@@ -89,3 +89,9 @@ korozaA, wangZ, songD -- 2019-04-08 6:40
 - Added information for user and made landing page a little more appealing.
 - updated readme and added launch details
 - ready to demo!
+--------------------------------------------------------------
+korozaA, wangZ, songD -- 2019-04-08 7:42
+--------------------------------------------------------------
+- Added more stylistic elements to text
+- Added buttons for easier navigation from each graph
+- Ready to demo!
