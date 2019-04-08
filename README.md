@@ -14,51 +14,29 @@ We sourced this dataset from [here](https://www.kaggle.com/noriuk/us-education-d
 
 ## Display
 
-The user will be shown a map of the United States tuned to the data from our dataset. Darker regions of the map will refelct higher amounts of the property in question (eg. funding). This will provide for a clear visualization of differences between states. The dataset allows the user to explore how state revenues and various types of expenditures affect academic achievement of the students in that state. One would also be able to track differences in the performance and enrollment of students of varying racial backgrounds/ genders. 
-
-<include sketch here>
+The user will be shown a map of the United States tuned to the data from our dataset. Darker regions of the map will refelct higher amounts of the property in question (eg. funding). This will provide for a clear visualization of differences between states. The dataset allows the user to explore how state revenues affect academic achievement of the students in that state.
   
 ## D3 Utilization
 
-To implement our responsive map, we will be referencing the [chloropleth](https://observablehq.com/@d3/choropleth) D3 gallery example. When the user hovers over a particular state, data for that state will be visible. 
+To implement our responsive map, we referenced the [chloropleth](https://observablehq.com/@d3/choropleth) D3 gallery example. When the user hovers over a particular state, data for that state for the past 3 years becomes visible. 
 
-The appearance of the map will depend on the user's selections. Options will be visible on the screen near the map. 
-User would be prompted to choose a year and an option from either the Financial, Enrollment, or Achievment fields. The possible options for each field (and some additional details) are as follows:
+The user can either choose to view the map containing financial (total revenue), enrollment (the U.S. Census Bureau's count for students in the state), or achievement data (average score for eight graders taking the NAEP math exam).
 
-#### Financial
-
-ENROLL (The U.S. Census Bureau's count for students in the state. Should be comparable to GRADES_ALL (which is the NCES's estimate for students in the state);
-TOTAL REVENUE (The total amount of revenue for the state);
-FEDERAL_REVENUE;
-STATE_REVENUE;
-LOCAL_REVENUE;
-TOTAL_EXPENDITURE (The total expenditure for the state);
-INSTRUCTION_EXPENDITURE;
-SUPPORT_SERVICES_EXPENDITURE;
-CAPITAL_OUTLAY_EXPENDITURE;
-OTHER_EXPENDITURE;
-
-#### Enrollment
-
-GRADES_PK: Number of students in Pre-Kindergarten education;
-GRADES_4: Number of students in fourth grade;
-GRADES_8: Number of students in eighth grade;
-GRADES_12: Number of students in twelfth grade;
-GRADES_1_8: Number of students in the first through eighth grades;
-GRADES 9_12: Number of students in the ninth through twelfth grades;
-GRADES_KG_12: Number of students in Kindergarten through twelfth grade;
-GRADES_ALL: The count of all students in the state;
-
-Data is also divided to include some demographic information:
-The represented races include AM (American Indian or Alaska Native), AS (Asian), HI (Hispanic/Latino), BL (Black or African American), WH (White), HP (Hawaiian Native/Pacific Islander), and TR (Two or More Races). The represented genders include M (Male) and F (Female).
-
-#### Achievement
-
-AVG_MATH_4_SCORE: The state's average score for fourth graders taking the NAEP math exam;
-AVG_MATH_8_SCORE: The state's average score for eight graders taking the NAEP math exam;
-AVG_READING_4_SCORE: The state's average score for fourth graders taking the NAEP reading exam;
-AVG_READING_8_SCORE: The state's average score for eighth graders taking the NAEP reading exam;
 
 ## Sketch
 
 ![image](/sketch.jpeg)
+
+## Launch Codes!
+
+Ready to dive in? 
+
+1. Copy the ssh/https link and run ``` $ git clone <link> ```
+2. Install virtualenv by running ```$ pip install virtualenv ```
+3. Make a new venv by running ``` $ python3 -m venv ENV ```
+4. Activate it by running ``` $ . /ENV/bin/activate ```
+5. Install Flask and wheel with $ pip install flask and $ pip install wheel (this is a Flask application)
+6. Run $ python app.py
+7. Launch the root route (http://127.0.0.1:5000/) in your browser to go to the login page.
+
+
