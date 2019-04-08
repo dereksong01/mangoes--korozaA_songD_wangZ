@@ -2,23 +2,24 @@
 {% block title %} Welcome {% endblock %}
 {% block svg %} {% endblock %}
 {% block content %}
-<p> Hi here are three cool maps you can use to learn more about education in the U.S.A!</p>
+<p> Welcome to Mangoes' SoftDev Project! Here are three cool maps you can use to learn more about education in the U.S.A!</p>
 
- <p> Please choose what you are interested in: </p>
-
-<p> Finances! </p>
+ <p> Please, choose what you are interested in: </p>
+ 
  <form action="/map" method="POST">
-     <input type="submit" name= "submit1" value="submit1">
+   <button type="submit" class="btn btn-success"> Finances </button>
  </form>
-
-<p> Enrollment! </p>
+ 
  <form action="/map1" method="POST">
-     <input type="submit" name= "submit2" value="submit2">
+   <button type="submit" class="btn btn-danger"> Enrollment </button>
  </form>
-
-<p> Grades! </p>
+ 
  <form action="/map2" method="POST">
-     <input type="submit" name= "submit3" value="submit3">
+   <button type="submit" class="btn btn-primary"> Grades </button>
  </form>
+ 
+ <br>
 
-{% endblock %}
+<p> This project is built using choropleth and using data with each state's records on it. The information displayed on each map is total revenue of each state in 2016, the amount of students in each state in 2016, and the average NAEP math exam scores for the eighth grade from each state in 2017. We wanted to see how the financial state of the environment children lived in resulted in whether they went to school and how it would affect their performance on standardized exams.</p>
+ {% endblock %}
+ 
