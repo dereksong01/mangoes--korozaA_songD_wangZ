@@ -83,3 +83,9 @@ korozaA -- 2019-04-07 16:00
 - Continued work on mouseover/graph feature. Bar graphs now appear showing past three years.
 - Migrating mechanism to two other graphs.
 - Left to do is some bootstrapping to have a prettier landing page.
+--------------------------------------------------------------
+korozaA, wangZ, songD -- 2019-04-08 6:40
+--------------------------------------------------------------
+- Added information for user and made landing page a little more appealing.
+- updated readme and added launch details
+- ready to demo!
